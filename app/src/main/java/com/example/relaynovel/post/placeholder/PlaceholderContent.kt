@@ -30,13 +30,13 @@ object PlaceholderContent {
         }
     }
 
-    private fun addItem(item: PlaceholderItem) {
+    public fun addItem(item: PlaceholderItem) {
         ITEMS.add(item)
         ITEM_MAP.put(item.id, item)
     }
 
     private fun createPlaceholderItem(position: Int): PlaceholderItem {
-        return PlaceholderItem(position.toString(), "Item " + position, makeDetails(position))
+        return PlaceholderItem(position.toString(), "Item " + position)
     }
 
     private fun makeDetails(position: Int): String {
@@ -52,7 +52,7 @@ object PlaceholderContent {
      * A placeholder item representing a piece of content.
      */
     /* Item 데이터를 가지고 있는 클래스. C 계열의 struct와 동일 */
-    data class PlaceholderItem(val id: String, val content: String, val details: String) {
-        override fun toString(): String = content
+    data class PlaceholderItem(val id: String, val owner: String) {
+        override fun toString(): String = owner
     }
 }

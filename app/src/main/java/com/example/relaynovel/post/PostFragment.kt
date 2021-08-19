@@ -10,17 +10,18 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.Toast
-import androidx.core.content.ContextCompat.getSystemService
 import com.example.relaynovel.R
 import com.example.relaynovel.post.placeholder.PlaceholderContent
+import com.example.relaynovel.ui.main.PageViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 /**
  * A fragment representing a list of Items.
  */
 class PostFragment : Fragment() {
-
+    private lateinit var pageViewModel: PageViewModel
     private var columnCount = 1
 
     // 액티비티의 호출을 받아 프래그먼트가 생성됨
@@ -68,6 +69,11 @@ class PostFragment : Fragment() {
             .setView(popup)
             .setPositiveButton("저장") {
                 dialog, which ->
+                var titleText = popup.findViewById<EditText>(R.id.postTitle)
+                var contentText = popup.findViewById<EditText>(R.id.postContent)
+                var title = titleText.text.toString()
+                var content = contentText.text.toString()
+                PlaceholderContent.addItem(PlaceholderContent.PlaceholderItem(title, title))
                 Toast.makeText(context?.applicationContext, "저장 완료!", Toast.LENGTH_SHORT).show()
             }
             .create()
