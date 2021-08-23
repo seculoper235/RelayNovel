@@ -1,7 +1,6 @@
 package com.example.relaynovel.post
 
 import android.app.AlertDialog
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
@@ -13,7 +12,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import com.example.relaynovel.R
-import com.example.relaynovel.post.placeholder.PlaceholderContent
+import com.example.relaynovel.post.placeholder.PlaceHolderList
 import com.example.relaynovel.ui.main.PageViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -22,6 +21,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
  */
 class PostFragment : Fragment() {
     private lateinit var pageViewModel: PageViewModel
+    private lateinit var title: String
     private var columnCount = 1
 
     // 액티비티의 호출을 받아 프래그먼트가 생성됨
@@ -48,7 +48,8 @@ class PostFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
-                adapter = MyPostRecyclerViewAdapter(PlaceholderContent.ITEMS)
+                // 리스트뷰 업데이트
+                adapter = MyPostRecyclerViewAdapter(PlaceHolderList.ITEMLIST)
             }
         }
 
@@ -56,7 +57,14 @@ class PostFragment : Fragment() {
         var create = view.rootView.findViewById<FloatingActionButton>(R.id.create_btn)
         create.setOnClickListener {
             showRegisterPopup()
+            if (view is RecyclerView) {
+                with(view) {
+                    view.adapter?.notifyDataSetChanged()
+                }
+            }
         }
+        print(PlaceHolderList.ITEMLIST[0].owner)
+        //adapter?.notifyDataSetChanged()
 
         return view
     }
@@ -73,7 +81,8 @@ class PostFragment : Fragment() {
                 var contentText = popup.findViewById<EditText>(R.id.postContent)
                 var title = titleText.text.toString()
                 var content = contentText.text.toString()
-                PlaceholderContent.addItem(PlaceholderContent.PlaceholderItem(title, title))
+                print(title)
+                PlaceHolderList.ITEMLIST.add(PlaceHolderList.PlaceHolderItem(title, title))
                 Toast.makeText(context?.applicationContext, "저장 완료!", Toast.LENGTH_SHORT).show()
             }
             .create()

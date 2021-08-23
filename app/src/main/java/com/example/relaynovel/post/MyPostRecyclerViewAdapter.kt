@@ -6,14 +6,11 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relaynovel.databinding.FragmentPostBinding
-import com.example.relaynovel.post.placeholder.PlaceholderContent.PlaceholderItem
+import com.example.relaynovel.post.placeholder.PlaceHolderList
 
-/**
- * [RecyclerView.Adapter] that can display a [PlaceholderItem].
- * TODO: Replace the implementation with code for your data type.
- */
+
 class MyPostRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>
+    private val values: PlaceHolderList
 ) : RecyclerView.Adapter<MyPostRecyclerViewAdapter.ViewHolder>() {
 
     /* onCreateViewHolder 란?
@@ -52,9 +49,9 @@ class MyPostRecyclerViewAdapter(
         val owner: TextView = binding.Owner
 
         // View와 Item 연결
-        fun bind(item: PlaceholderItem) {
-            novelName.setText(item.id)
-            owner.text = item.owner
+        fun bind(list: PlaceHolderList) {
+            novelName.setText(list.id)
+            owner.text = list.owner
         }
 
         override fun toString(): String {
