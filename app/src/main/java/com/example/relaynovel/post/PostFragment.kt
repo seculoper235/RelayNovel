@@ -11,16 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.example.relaynovel.R
-import com.example.relaynovel.post.placeholder.PlaceHolderList
-import com.example.relaynovel.ui.main.PageViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import java.security.Provider
 
 /**
  * A fragment representing a list of Items.
  */
 class PostFragment : Fragment() {
-    private lateinit var pageViewModel: PageViewModel
+    private val postModel by viewModels<PostModel>()
     private lateinit var title: String
     private var columnCount = 1
 
@@ -49,7 +49,7 @@ class PostFragment : Fragment() {
                     else -> GridLayoutManager(context, columnCount)
                 }
                 // 리스트뷰 업데이트
-                adapter = MyPostRecyclerViewAdapter(PlaceHolderList.ITEMLIST)
+                adapter = MyPostRecyclerViewAdapter(postModel.getItemList())
             }
         }
 
@@ -63,8 +63,6 @@ class PostFragment : Fragment() {
                 }
             }
         }
-        print(PlaceHolderList.ITEMLIST[0].owner)
-        //adapter?.notifyDataSetChanged()
 
         return view
     }
@@ -82,7 +80,6 @@ class PostFragment : Fragment() {
                 var title = titleText.text.toString()
                 var content = contentText.text.toString()
                 print(title)
-                PlaceHolderList.ITEMLIST.add(PlaceHolderList.PlaceHolderItem(title, title))
                 Toast.makeText(context?.applicationContext, "저장 완료!", Toast.LENGTH_SHORT).show()
             }
             .create()

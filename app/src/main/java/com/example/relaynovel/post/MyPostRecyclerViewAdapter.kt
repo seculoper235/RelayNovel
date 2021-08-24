@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relaynovel.databinding.FragmentPostBinding
-import com.example.relaynovel.post.placeholder.PlaceHolderList
 
 
 class MyPostRecyclerViewAdapter(
-    private val values: PlaceHolderList
+    private val values: MutableLiveData<List<PostItem>>
 ) : RecyclerView.Adapter<MyPostRecyclerViewAdapter.ViewHolder>() {
 
     /* onCreateViewHolder 란?
@@ -33,12 +33,12 @@ class MyPostRecyclerViewAdapter(
     * ViewHolder의 bind() 메소드를 통해 바인딩 한다
     *  */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
+        val item = values.value!!.get(position)
         holder.bind(item)
     }
 
     // 총 Item 데이터의 개수
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = values.value!!.size
 
     /* ViewHolder란?
     * Item_View와 Item 데이터를 바인딩하는 역할을 한다.
@@ -49,9 +49,9 @@ class MyPostRecyclerViewAdapter(
         val owner: TextView = binding.Owner
 
         // View와 Item 연결
-        fun bind(list: PlaceHolderList) {
-            novelName.setText(list.id)
-            owner.text = list.owner
+        fun bind(item: PostItem) {
+            novelName.setText(item.id)
+            owner.text = item.owner
         }
 
         override fun toString(): String {
