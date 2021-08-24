@@ -22,14 +22,13 @@ class SectionsPagerAdapter(private val context: Context, fm: FragmentManager) :
 
     override fun getItem(position: Int): Fragment {
         when(position) {
-            0 -> return PlaceholderFragment();
-            1 -> return PostFragment();
-            else -> return PostFragment();
+            0 -> return PlaceholderFragment()
+            1 -> return PostFragment()
+            else -> return PostFragment()
         }
-        //return PlaceholderFragment.newInstance(position + 1)
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return context.resources.getString(TAB_TITLES[position])
     }
 

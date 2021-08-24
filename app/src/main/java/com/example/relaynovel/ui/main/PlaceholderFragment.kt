@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.relaynovel.R
 import com.example.relaynovel.databinding.FragmentMainBinding
 
 /**
@@ -33,13 +32,18 @@ class PlaceholderFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         val root = binding.root
 
         val textView: TextView = binding.sectionLabel
-        pageViewModel.text.observe(viewLifecycleOwner, Observer {
+        /* ViewModel 사용 방법
+        * Observer: 변화가 일어나면 취할 행동 지정
+        * viewLifecycleOwner: ViewModel이 따라갈 라이프 사이클 지정
+        * observe(): ViewModel의 데이터의 변화를 관찰
+        * */
+        pageViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root
