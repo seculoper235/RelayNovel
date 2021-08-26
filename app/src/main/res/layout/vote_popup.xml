@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/OwnerName"
+        android:layout_width="224dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:text="핑핑"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="232dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="16dp"
+        android:text="1. 초원에서"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OwnerName" />
+
+    <MultiAutoCompleteTextView
+        android:id="@+id/Content"
+        android:layout_width="232dp"
+        android:layout_height="525dp"
+        android:inputType="textMultiLine"
+        android:minHeight="48dp"
+        android:singleLine="false"
+        android:text="후하하하핫"
+        app:layout_constraintBottom_toTopOf="@+id/goodNum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ToggleButton
+        android:id="@+id/goodButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="116dp"
+        android:layout_marginBottom="24dp"
+        android:text="ToggleButton"
+        android:textOff="X"
+        android:textOn="Good"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/badButton"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ToggleButton
+        android:id="@+id/badButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="24dp"
+        android:text="ToggleButton"
+        android:textOff="X"
+        android:textOn="Bad"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/goodNum"
+        android:layout_width="86dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="116dp"
+        android:gravity="center"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/goodButton"
+        app:layout_constraintEnd_toStartOf="@+id/badNum"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/badNum"
+        android:layout_width="86dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="116dp"
+        android:gravity="center"
+        android:text="0"
+        app:layout_constraintBottom_toTopOf="@+id/badButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/goodNum" />
+</androidx.constraintlayout.widget.ConstraintLayout>

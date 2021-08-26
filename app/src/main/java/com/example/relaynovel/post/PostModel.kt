@@ -4,18 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class PostModel: ViewModel() {
-    private val itemList: MutableLiveData<List<PostItem>> by lazy {
-        MutableLiveData<List<PostItem>>().also {
-            loadItemList()
+    var itemList: MutableLiveData<MutableList<PostItem>> = MutableLiveData(mutableListOf())
+        get() { return field }
+        set(item) {
+            field = item
         }
-    }
-
-    @JvmName("getItemList1")
-    fun getItemList(): MutableLiveData<List<PostItem>> {
-        return itemList
-    }
-
-    private fun loadItemList() {
-        // TODO 아이템 리스트를 가져오는 과정 구현
-    }
 }

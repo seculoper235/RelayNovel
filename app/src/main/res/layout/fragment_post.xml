@@ -15,24 +15,38 @@
         app:cardBackgroundColor="#ECF498">
 
         <TextView
-            android:id="@+id/Owner"
-            android:layout_width="match_parent"
+            android:id="@+id/Owner_pre"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:paddingLeft="20dp"
+            android:paddingRight="10dp"
             android:paddingBottom="5dp"
-            android:text="by 핑핑"
+            android:text="@string/post_from"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/Owner"
+            android:layout_width="336dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_marginLeft="20dp"
+            android:paddingBottom="5dp"
+            android:text="핑핑"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/NovelName"
-            android:layout_width="wrap_content"
+            android:layout_width="221dp"
             android:layout_height="wrap_content"
+            android:layout_margin="0dp"
             android:ems="10"
+            android:gravity="center|left"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:paddingLeft="20dp"
-            android:text="포스트 1" />
+            android:text="포스트 1"
+            android:textSize="28dp" />
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>
