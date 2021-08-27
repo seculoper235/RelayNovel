@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.findFragment
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.example.relaynovel.R
 import com.example.relaynovel.databinding.FragmentPostBinding
+import com.example.relaynovel.databinding.RegisterPopupBinding
 import com.example.relaynovel.databinding.VotePopupBinding
 
 
@@ -20,12 +22,24 @@ class MyPostRecyclerViewAdapter(
 ) : RecyclerView.Adapter<MyPostRecyclerViewAdapter.ViewHolder>() {
 
     private lateinit var voteBinding: VotePopupBinding
+    private lateinit var registerPopupBinding: RegisterPopupBinding
+
     /* onCreateViewHolder 란?
     * ViewHolder.class와 ViewHolder.xml을 바인딩
     * (프래그먼트의 onCreateView()와 동일함)
     *  */
+    override fun onViewAttachedToWindow(holder: ViewHolder) {
+        super.onViewAttachedToWindow(holder)
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         voteBinding = VotePopupBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+
+        registerPopupBinding = RegisterPopupBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
@@ -57,7 +71,7 @@ class MyPostRecyclerViewAdapter(
 
     fun showPopup(holder: ViewHolder) {
         val viewPopup = AlertDialog.Builder(holder.itemView.context)
-            .setView(R.layout.vote_popup)
+            .setView(voteBinding.root.rootView)
             .setPositiveButton("확인") {
                     dialog, which ->
                 //

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.relaynovel.R
@@ -17,7 +18,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 /**
  * A fragment representing a list of Items.
  */
-class PostFragment : Fragment() {
+class PostFragment : DialogFragment() {
     private val postModel by viewModels<PostModel>()
     private var columnCount = 1
     private var itemList: MutableList<PostItem> = mutableListOf()
@@ -26,7 +27,6 @@ class PostFragment : Fragment() {
     // 액티비티의 호출을 받아 프래그먼트가 생성됨
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         //
         arguments?.let {
             columnCount = it.getInt(ARG_COLUMN_COUNT)
